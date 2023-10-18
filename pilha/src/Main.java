@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -16,11 +17,16 @@ public class Main {
 
             switch (escolha) {
                 case 1:
-                    System.out.print("Nome do Passageiro: ");
-                    String nome = scanner.next();
-                    System.out.print("Peso do Passageiro (em kg): ");
-                    double peso = scanner.nextDouble();
-                    veiculo.entrarPassageiro(nome, peso);
+                    try {
+                        System.out.print("Nome do Passageiro: ");
+                        String nome = scanner.next();
+                        System.out.print("Peso do Passageiro (em kg): ");
+                        double peso = scanner.nextDouble();
+                        veiculo.entrarPassageiro(nome, peso);
+                    } catch (InputMismatchException e) {
+                        System.out.println("Valor inválido. Certifique-se de inserir um número válido para o peso.");
+                        scanner.nextLine();
+                    }
                     break;
                 case 2:
                     veiculo.desembarcarPassageiros();
